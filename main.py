@@ -47,6 +47,7 @@ while running:
           
   gameDisplay.fill(white)
   for point in point_objs:
+      point.update()
       point.display(gameDisplay)
   pygame.display.update()
   clock.tick(60)
