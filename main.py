@@ -24,16 +24,11 @@ circleImg = pygame.image.load('static/ball.png')
 point_objs = []
 
 for i in range(20):
-    point_objs.append(Point(random(),random()))
+    point_objs.append(Point('static/ball.png', random()*display_width,random()*display_height))
 
 
 for point in point_objs:
     print("Point obj with x: " + str(point.x) + " and y: " + str(point.y))
-
-
-
-def display_circle(x,y):
-    gameDisplay.blit(circleImg, (x,y))
 
 running = 1
 
@@ -51,7 +46,8 @@ while running:
       pass
           
   gameDisplay.fill(white)
-  display_circle(circ_x, circ_y)
+  for point in point_objs:
+      point.display(gameDisplay)
   pygame.display.update()
   clock.tick(60)
 
