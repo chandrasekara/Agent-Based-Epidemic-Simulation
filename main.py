@@ -6,7 +6,7 @@ from sim_objects.point import Point
 from sim_objects.util.game_info import *
 from sim_objects.util.colors import *
 from logic.sim_controller import SimulationController
-
+from data.graph import *
 pygame.init()
 
 gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
@@ -17,7 +17,7 @@ sim_controller = SimulationController()
 
 sim_objs = []
 
-for i in range(50):
+for i in range(80):
     sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
 
 initial_infected = 3
@@ -44,5 +44,7 @@ while running:
   clock.tick(60)
 
 sim_controller.close()
+
+display_results('results.csv')
 
 pygame.quit()

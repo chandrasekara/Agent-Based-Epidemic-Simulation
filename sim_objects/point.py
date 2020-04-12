@@ -36,7 +36,7 @@ class Point(SimulationObject):
 
         if self.infected:
             self.infection_timer += 1
-            if self.infection_timer > 120:
+            if self.infection_timer > 200:
                 self.recover()
     
     def recover(self):
