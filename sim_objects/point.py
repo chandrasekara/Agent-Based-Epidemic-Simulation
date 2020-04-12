@@ -15,7 +15,14 @@ class Point(SimulationObject):
         else:
             self.velocity = specified_velocity
         self.infected = False
+        self.recovered = False
+        self.infection_timer = 0
 
+
+    def infect(self):
+        self.image = BALL_INFECTED_SPRITE
+        self.infected = True
+    
     def update(self):
         SimulationObject.update(self)
         if self.x >= DISPLAY_WIDTH or self.x <= 0:
@@ -26,6 +33,17 @@ class Point(SimulationObject):
         dy = self.velocity[1]
         self.y += dy
         self.x += dx
+
+        if self.infected:
+            self.infection_timer += 1
+            if self.infection_timer > 120:
+                self.recover()
+    
+    def recover(self):
+        self.infected = False
+        self.recovered = True
+        self.image = BALL_RECOVERED_SPRITE
+    
 
     def bounce(self, direction):
         if direction == 'x':
