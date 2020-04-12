@@ -8,7 +8,7 @@ class SimulationController:
 
     def conductSimulationLogic(self, sim_objects):
         num_infected = 0
-            # for the time being, assume all sim_objects are balls. change later! TODO
+        # for the time being, assume all sim_objects are balls. change later! TODO
         for i in range(len(sim_objects)-1):
             j = i + 1
             if sim_objects[i].infected:
@@ -24,12 +24,9 @@ class SimulationController:
                         sim_objects[i].infect()
                     if (sim_objects[i].infected == True and sim_objects[j].infected == False):
                         sim_objects[j].infect()    
-                # TODO take into account recovery
-
                 j += 1
         if sim_objects[-1].infected:
             num_infected += 1
-
         self.data_controller.tick(num_infected)
     
     def close(self):
