@@ -9,3 +9,6 @@ class SimulationObject:
 
     def display(self, gameDisplay):
         gameDisplay.blit(self.image, (self.x, self.y))
+
+    def update(self):
+        pass
