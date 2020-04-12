@@ -14,6 +14,7 @@ class Point(SimulationObject):
             self.velocity = (speed_x, math.sqrt(MAX_VELOCITY*MAX_VELOCITY - speed_x*speed_x))
         else:
             self.velocity = specified_velocity
+        self.infected = False
 
     def update(self):
         SimulationObject.update(self)
