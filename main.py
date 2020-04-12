@@ -20,7 +20,10 @@ sim_objs = []
 for i in range(50):
     sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
 
-sim_objs[0].infect()
+initial_infected = 3
+
+for i in range(initial_infected):
+    sim_objs[i].infect()
 
 running = 1
 
@@ -39,5 +42,7 @@ while running:
   sim_controller.conductSimulationLogic(sim_objs)
   pygame.display.update()
   clock.tick(60)
+
+sim_controller.close()
 
 pygame.quit()
