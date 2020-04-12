@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from random import random
-
+import time
 from sim_objects.point import Point
 
 pygame.init()
@@ -23,12 +23,8 @@ circleImg = pygame.image.load('static/ball.png')
 
 point_objs = []
 
-for i in range(20):
+for i in range(10):
     point_objs.append(Point('static/ball.png', random()*display_width,random()*display_height))
-
-
-for point in point_objs:
-    print("Point obj with x: " + str(point.x) + " and y: " + str(point.y))
 
 running = 1
 
@@ -47,6 +43,7 @@ while running:
           
   gameDisplay.fill(white)
   for point in point_objs:
+      point.update()
       point.display(gameDisplay)
   pygame.display.update()
   clock.tick(60)
