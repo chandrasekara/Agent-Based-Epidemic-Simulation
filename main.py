@@ -15,12 +15,14 @@ clock = pygame.time.Clock()
 
 sim_controller = SimulationController()
 
+# TODO: Move to better global game information object
+number_of_agents = 80
+initial_infected = 3
+
 sim_objs = []
 
-for i in range(80):
+for i in range(number_of_agents):
     sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
-
-initial_infected = 3
 
 for i in range(initial_infected):
     sim_objs[i].infect()
