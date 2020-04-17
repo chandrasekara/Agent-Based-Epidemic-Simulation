@@ -7,6 +7,29 @@ from sim_objects.util.game_info import *
 from sim_objects.util.colors import *
 from logic.sim_controller import SimulationController
 from data.graph import *
+import argparse
+
+parser = argparse.ArgumentParser(description='Simulate the spread of an infectious virus')
+parser.add_argument('-a','--agents', type=int, help='Number of Agents')
+parser.add_argument('-i', '--infected', type=int, help='Number of Initially Infected Agents')
+args = parser.parse_args()
+
+number_of_agents = args.agents
+initial_infected = args.infected
+# TODO: Move to better global game information object
+
+sim_objs = []
+
+try:
+    for i in range(number_of_agents):
+        sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
+
+    for i in range(initial_infected):
+        sim_objs[i].infect()
+except:
+    parser.print_help()
+    exit()
+
 pygame.init()
 
 gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
@@ -15,17 +38,6 @@ clock = pygame.time.Clock()
 
 sim_controller = SimulationController()
 
-# TODO: Move to better global game information object
-number_of_agents = 80
-initial_infected = 3
-
-sim_objs = []
-
-for i in range(number_of_agents):
-    sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
-
-for i in range(initial_infected):
-    sim_objs[i].infect()
 
 running = 1
 
