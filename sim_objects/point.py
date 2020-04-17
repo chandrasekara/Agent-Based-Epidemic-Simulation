@@ -7,7 +7,7 @@ MAX_VELOCITY = 2
 
 class Point(SimulationObject):
 
-    def __init__(self, imageFile, x_in, y_in, specified_velocity=None):
+    def __init__(self, imageFile, x_in, y_in, infection_recovery_period_in, specified_velocity=None):
         SimulationObject.__init__(self, imageFile, x_in, y_in)
         if specified_velocity == None:
             speed_x = MAX_VELOCITY * random()
@@ -17,7 +17,7 @@ class Point(SimulationObject):
         self.infected = False
         self.recovered = False
         self.infection_timer = 0
-
+        self.infection_recovery_period = infection_recovery_period_in
 
     def infect(self):
         self.image = BALL_INFECTED_SPRITE
@@ -36,7 +36,7 @@ class Point(SimulationObject):
 
         if self.infected:
             self.infection_timer += 1
-            if self.infection_timer > 200:
+            if self.infection_timer > self.infection_recovery_period:
                 self.recover()
     
     def recover(self):
