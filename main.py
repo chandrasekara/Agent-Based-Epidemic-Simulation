@@ -9,26 +9,47 @@ from logic.sim_controller import SimulationController
 from data.graph import *
 import argparse
 
+DEFAULT_NUM_AGENTS = 80
+DEFAULT_INITIAL_INFECTED = 3
+
 parser = argparse.ArgumentParser(description='Simulate the spread of an infectious virus')
 parser.add_argument('-a','--agents', type=int, help='Number of Agents')
 parser.add_argument('-i', '--infected', type=int, help='Number of Initially Infected Agents')
+parser.add_argument('--default', help='use the default settings', action='store_true')
 args = parser.parse_args()
 
-number_of_agents = args.agents
-initial_infected = args.infected
-# TODO: Move to better global game information object
+if args.default:
 
-sim_objs = []
+    number_of_agents = DEFAULT_NUM_AGENTS
+    initial_infected = DEFAULT_INITIAL_INFECTED
+    # TODO: Move to better global game information object
 
-try:
+    sim_objs = []
+
     for i in range(number_of_agents):
         sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
 
     for i in range(initial_infected):
         sim_objs[i].infect()
-except:
-    parser.print_help()
-    exit()
+
+else:
+    
+
+    number_of_agents = args.agents
+    initial_infected = args.infected
+    # TODO: Move to better global game information object
+
+    sim_objs = []
+
+    try:
+        for i in range(number_of_agents):
+            sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT))
+
+        for i in range(initial_infected):
+            sim_objs[i].infect()
+    except:
+        parser.print_help()
+        exit()
 
 pygame.init()
 
