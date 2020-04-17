@@ -16,6 +16,7 @@ DEFAULT_INFECTION_RECOVERY_PERIOD = 200
 parser = argparse.ArgumentParser(description='Simulate the spread of an infectious virus')
 parser.add_argument('-a','--agents', type=int, help='Number of Agents')
 parser.add_argument('-i', '--infected', type=int, help='Number of Initially Infected Agents')
+parser.add_argument('-r','--recovery', type=int, help='The number of ticks for an infected agent to recover')
 parser.add_argument('--default', help='use the default settings', action='store_true')
 args = parser.parse_args()
 
@@ -23,12 +24,13 @@ if args.default:
 
     number_of_agents = DEFAULT_NUM_AGENTS
     initial_infected = DEFAULT_INITIAL_INFECTED
+    infection_recovery_period = DEFAULT_INFECTION_RECOVERY_PERIOD
     # TODO: Move to better global game information object
     #MOVE SIM OBJ STUFF TO FUNCTIONS
     sim_objs = []
 
     for i in range(number_of_agents):
-        sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT, DEFAULT_INFECTION_RECOVERY_PERIOD))
+        sim_objs.append(Point(BALL_SPRITE, random()*DISPLAY_WIDTH,random()*DISPLAY_HEIGHT, infection_recovery_period))
 
     for i in range(initial_infected):
         sim_objs[i].infect()
@@ -38,8 +40,8 @@ else:
 
     number_of_agents = args.agents
     initial_infected = args.infected
+    infection_recovery_period = args.recovery
     # TODO: Move to better global game information object
-    infection_recovery_period = 200
 
     sim_objs = []
 
