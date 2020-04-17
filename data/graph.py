@@ -10,9 +10,14 @@ def display_results(results_file):
 
     ax = df.plot()
 
+    ax.set_title('Simulation Results')
+
     ax.set_xlabel('Time')
 
     ax.set_ylabel('Number Infected/Recovered')
+
+    fig = plt.gcf()
+    fig.canvas.set_window_title('Simulation Results')
     
     plt.show()
 
