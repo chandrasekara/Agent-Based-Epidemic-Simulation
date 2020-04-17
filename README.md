@@ -9,3 +9,7 @@ Dependencies:
 	-PyGame
 	-Matplotlib
 	-Pandas
+
+![alt text](https://github.com/chandrasekara/Agent-Based-Epidemic-Simulation/blob/dev/static/graph.PNG "Logo Title Text 1")
+
+
