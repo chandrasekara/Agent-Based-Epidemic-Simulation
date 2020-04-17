@@ -10,6 +10,6 @@ Dependencies:
 	-Matplotlib
 	-Pandas
 
-![alt text](https://github.com/chandrasekara/Agent-Based-Epidemic-Simulation/blob/dev/static/graph.PNG "Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/chandrasekara/Agent-Based-Epidemic-Simulation/dev/static/grah3.png "Logo Title Text 1")
 
 
