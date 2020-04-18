@@ -11,6 +11,7 @@ DEFAULT_NUM_AGENTS = 80
 DEFAULT_INITIAL_INFECTED = 3
 DEFAULT_INFECTION_RECOVERY_PERIOD = 200
 DEFAULT_SOCIAL_DISTANCING_FACTOR = 50
+TICK_PER_UPDATE = 60
 
 parser = argparse.ArgumentParser(description='Simulate the spread of an infectious virus')
 parser.add_argument('-a', '--agents', type=int, help='Number of Agents')
@@ -20,6 +21,12 @@ parser.add_argument('-d', '--social-distancing', type=int, help='The percentage 
                                                                'distancing', dest="social_distancing_factor")
 parser.add_argument('--default', help='use the default settings', action='store_true')
 args = parser.parse_args()
+
+
+def message_to_screen(msg):
+    font = pygame.font.SysFront(None, 400)
+    screen_text = font.render(msg, True, (0, 0, 0))
+    gameDisplay.blit(screen_text, [640/2, 480/2])
 
 
 # TODO: Move these functions to a better place
@@ -66,17 +73,20 @@ while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = 0
-        else:
-            # print event
-            pass
     gameDisplay.fill(white)
+    infect_count = 0
     for point in sim_objs:
+        if point.infected is True:
+            infect_count += 1
         point.update()
         point.display(gameDisplay)
+    if infect_count == 0:
+        running = 0
     sim_controller.conductSimulationLogic(sim_objs)
     pygame.display.update()
-    clock.tick(60)
+    clock.tick(TICK_PER_UPDATE)
 
 sim_controller.close()
-display_results('results.csv')
 pygame.quit()
+display_results('results.csv')
+
