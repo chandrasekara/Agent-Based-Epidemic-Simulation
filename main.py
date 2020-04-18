@@ -21,34 +21,26 @@ args = parser.parse_args()
 
 # TODO: Move these functions to a better place
 def initialize_simulation_objects(number_of_agents, initial_infected, infection_recovery_period):
-
     sim_objs = []
     for i in range(number_of_agents):
         sim_objs.append(
             Point(BALL_SPRITE, random() * DISPLAY_WIDTH, random() * DISPLAY_HEIGHT, infection_recovery_period))
-
     for i in range(initial_infected):
         sim_objs[i].infect()
-
     return sim_objs
 
 
 if args.default:
-
     number_of_agents = DEFAULT_NUM_AGENTS
     initial_infected = DEFAULT_INITIAL_INFECTED
     infection_recovery_period = DEFAULT_INFECTION_RECOVERY_PERIOD
     # TODO: Move to better global game information object
-
     sim_objs = initialize_simulation_objects(number_of_agents, initial_infected, infection_recovery_period)
-
 else:
-
     number_of_agents = args.agents
     initial_infected = args.infected
     infection_recovery_period = args.recovery
     # TODO: Move to better global game information object
-
     try:
         sim_objs = initialize_simulation_objects(number_of_agents, initial_infected, infection_recovery_period)
     except:
@@ -56,13 +48,11 @@ else:
         exit()
 
 pygame.init()
-
 gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 pygame.display.set_caption('Epidemic Simulation')
 clock = pygame.time.Clock()
 
 sim_controller = SimulationController()
-
 running = 1
 
 while running:
@@ -72,7 +62,6 @@ while running:
         else:
             # print event
             pass
-
     gameDisplay.fill(white)
     for point in sim_objs:
         point.update()
@@ -82,7 +71,5 @@ while running:
     clock.tick(60)
 
 sim_controller.close()
-
 display_results('results.csv')
-
 pygame.quit()
