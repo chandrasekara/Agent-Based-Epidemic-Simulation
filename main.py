@@ -10,7 +10,7 @@ import argparse
 DEFAULT_NUM_AGENTS = 80
 DEFAULT_INITIAL_INFECTED = 3
 DEFAULT_INFECTION_RECOVERY_PERIOD = 200
-DEFAULT_SOCIAL_DISTANCING_FACTOR = 50
+DEFAULT_SOCIAL_DISTANCING_FACTOR = 0
 TICK_PER_UPDATE = 60
 
 parser = argparse.ArgumentParser(description='Simulate the spread of an infectious virus')
