@@ -54,9 +54,11 @@ else:
     number_of_agents = args.agents
     initial_infected = args.infected
     infection_recovery_period = args.recovery
+    social_distancing_factor = args.social_distancing_factor
     # TODO: Move to better global game information object
     try:
-        sim_objs = initialize_simulation_objects(number_of_agents, initial_infected, infection_recovery_period)
+        sim_objs = initialize_simulation_objects(number_of_agents, initial_infected, infection_recovery_period,
+            social_distancing_factor)
     except:
         parser.print_help()
         exit()
