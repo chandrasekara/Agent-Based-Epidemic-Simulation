@@ -7,12 +7,16 @@ from logic.sim_controller import SimulationController
 from data.graph import *
 import argparse
 
+# set default parameters
 DEFAULT_NUM_AGENTS = 80
 DEFAULT_INITIAL_INFECTED = 3
 DEFAULT_INFECTION_RECOVERY_PERIOD = 200
 DEFAULT_SOCIAL_DISTANCING_FACTOR = 0
+
+# pygame configuration parameters
 TICK_PER_UPDATE = 60
 
+# parse command line arguments
 parser = argparse.ArgumentParser(description='Simulate the spread of an infectious virus')
 parser.add_argument('-a', '--agents', type=int, help='Number of Agents')
 parser.add_argument('-i', '--infected', type=int, help='Number of Initially Infected Agents')
@@ -22,7 +26,7 @@ parser.add_argument('-d', '--social-distancing', type=int, help='The percentage 
 parser.add_argument('--default', help='use the default settings', action='store_true')
 args = parser.parse_args()
 
-
+# TODO: Implement for simulation end or delete
 def message_to_screen(msg):
     font = pygame.font.SysFront(None, 400)
     screen_text = font.render(msg, True, (0, 0, 0))
@@ -63,6 +67,7 @@ else:
         parser.print_help()
         exit()
 
+# initiate pygame and display
 pygame.init()
 gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 pygame.display.set_caption('Epidemic Simulation')
@@ -91,4 +96,3 @@ while running:
 sim_controller.close()
 pygame.quit()
 display_results('results.csv')
-
