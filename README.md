@@ -13,9 +13,12 @@ This simulation shows the high effectiveness of social distancing and self-isola
 
 ## Dependencies:
 
-* Pygame
+* PyGame
 * Matplotlib
 * Pandas
+
+To install all relevant dependencies, navigate to root folder and run:
+`pip install -r requirements.txt`
 
 ## Usage:
 
