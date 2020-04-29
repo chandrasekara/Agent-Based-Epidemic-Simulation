@@ -31,11 +31,14 @@ class Point(SimulationObject):
         else:
             return False
 
+    
     def infect(self):
+        # change the internal state to be infected, and change the sprite
         self.image = BALL_INFECTED_SPRITE
         self.infected = True
     
     def update(self):
+        # update position
         SimulationObject.update(self)
         if self.x >= DISPLAY_WIDTH or self.x <= 0:
             self.bounce('x')
@@ -46,18 +49,21 @@ class Point(SimulationObject):
         self.y += dy
         self.x += dx
 
+        # increment infection timer
         if self.infected:
             self.infection_timer += 1
             if self.infection_timer > self.infection_recovery_period:
                 self.recover()
     
     def recover(self):
+        # change the internal state to recovered, and change the sprite
         self.infected = False
         self.recovered = True
         self.image = BALL_RECOVERED_SPRITE
     
 
     def bounce(self, direction):
+        # reverse the component direction according to the bounce direction
         if direction == 'x':
             self.velocity = (-self.velocity[0], self.velocity[1])
         else:
